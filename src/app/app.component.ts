@@ -2,6 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Boutique } from './boutique';
 import { BoutiqueService } from './boutique.service';
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +11,8 @@ import { BoutiqueService } from './boutique.service';
 })
 
 export class AppComponent implements OnInit{
+  title: String = "UEFullStackProjectApp"
+
   public boutiques: Boutique[] | undefined;
 
   constructor(private boutiqueService: BoutiqueService) { }
@@ -30,4 +33,10 @@ export class AppComponent implements OnInit{
       }
     );
   }
+
+  /*public onAddBoutique(addForm : NgForm): void {
+    this.boutiqueService.addBoutique(addForm.value).subscribe(
+      (response : Boutique) => {}
+    );
+  }*/
 }
