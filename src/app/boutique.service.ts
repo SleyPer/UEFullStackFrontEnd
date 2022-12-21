@@ -24,7 +24,7 @@ export class BoutiqueService {
         return this.http.put<Boutique>(`${this.apiServerUrl}/boutique/update`, boutique);
     }
 
-    public deleteBoutique(boutiqueId: number): Observable<Boutique> {
-        return this.http.delete<Boutique>(`${this.apiServerUrl}/boutique/delete/${boutiqueId}`);
+    public deleteBoutique(boutiqueId: number): Observable<void> {
+        return this.http.delete<void>(`${this.apiServerUrl}/boutique/delete/${boutiqueId}`);
     }
 }

@@ -8,7 +8,7 @@
             <li><a>S'inscrire</a></li>
         </ul>
     </nav>
-    <a class="cta" href="#">Connexion</a>
+    <a class="cta">Connexion</a>
     <p class="menu cta">Menu</p>
 </header>
 <script>
@@ -18,46 +18,54 @@
     const overlay = doc.querySelector(".overlay");
 
     menuOpen.addEventListener("click", () => {
-    overlay.classList.add("overlay--active");
+        overlay.classList.add("overlay--active");
     });
 
     menuClose.addEventListener("click", () => {
-    overlay.classList.remove("overlay--active");
+        overlay.classList.remove("overlay--active");
     });
 
 </script>
 
-<div class="form">
-    <h1>Créer une boutique</h1>
-    <form method="post" #addForm="ngForm" (ngSubmit)="onAddBoutique(addForm)">
-        <div>
-            <label for="name">Nom : </label>
-            <input type="text" nbModel id="name" name="boutique_name"/>
-        </div>
-        <div>
-            <label for="openingHours">Horaires d'ouverture : </label>
-            <input type="text" nbModel id="openingHours" name="boutique_openingHours"/>
-        </div>
-        <div>
-            <label for="name">Congé : </label>
-            <input type="text" nbModel id="onLeave" name="boutique_onLeave"/>
-        </div>
-        <div class="button">
-            <button [disabled]="addForm.invalid" type="submit">Créer</button>
-        </div>
-    </form>
+
+<div id="addBoutiqueModal">
+    <div class="form">
+        <h1>Créer une boutique</h1>
+        <form method="post" #addForm="ngForm" (ngSubmit)="onAddBoutique(addForm)">
+            <div>
+                <label for="name">Nom : </label>
+                <input type="text" nbModel id="name" name="boutique_name" />
+            </div>
+            <div>
+                <label for="openingHours">Horaires d'ouverture : </label>
+                <input type="text" nbModel id="openingHours" name="boutique_openingHours" />
+            </div>
+            <div>
+                <label for="name">Congé : </label>
+                <input type="text" nbModel id="onLeave" name="boutique_onLeave" />
+            </div>
+            <div class="button">
+                <button type="submit">Créer</button>
+            </div>
+        </form>
+    </div>
+    <div class="modal-content">
+    </div>
 </div>
 
 
-<div class="boutiques">
+<div class="boutiques" id="main-container">
     <div class="ticket" *ngFor="let boutique of boutiques">
         <div class="attribute">{{boutique.name}}</div>
         <div class="attribute">{{boutique.openingHours}}</div>
         <div class="attribute">{{boutique.onLeave}}</div>
         <div class="button">
-            <input type="button" value="Modifier"/>
-            <input type="button" value="Supprimer"/>
+            <div id="updateBoutiqueModal">
+                <button>Modifier</button>
+            </div>
+            <div id="deleteBoutiqueModal">
+                <!--<button (click)="onDeleteBoutique(deleteBoutique?.id)">Supprimer</button> -->
+            </div>
         </div>
     </div>
 </div>
-

@@ -2,7 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Boutique } from './boutique';
 import { BoutiqueService } from './boutique.service';
-import {NgForm} from '@angular/forms';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +10,7 @@ import {NgForm} from '@angular/forms';
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
   title: String = "UEFullStackProjectApp"
 
   public boutiques: Boutique[] | undefined;
@@ -34,9 +34,32 @@ export class AppComponent implements OnInit{
     );
   }
 
-  /*public onAddBoutique(addForm : NgForm): void {
+  public onAddBoutique(addForm: NgForm): void {
+    console.log(addForm.value);
     this.boutiqueService.addBoutique(addForm.value).subscribe(
-      (response : Boutique) => {}
+      {
+        next: (response: Boutique) => {
+          console.log(response);
+          this.getBoutiques();
+        },
+        error: (error: HttpErrorResponse) => {
+          alert(error.message);
+        }
+      }
     );
-  }*/
+  }
+
+  public onDeleteBoutique(boutiqueId: number): void {
+    this.boutiqueService.deleteBoutique(boutiqueId).subscribe(
+      {
+        next: (response: void) => {
+          console.log(response);
+          this.getBoutiques();
+        },
+        error: (error: HttpErrorResponse) => {
+          alert(error.message);
+        }
+      }
+    );
+  }
 }
