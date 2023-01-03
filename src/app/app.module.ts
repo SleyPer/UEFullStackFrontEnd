@@ -4,10 +4,12 @@ import { BoutiqueService } from './boutique.service';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { BoutiqueComponent } from './boutique/boutique.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    BoutiqueComponent
   ],
   imports: [
     BrowserModule,

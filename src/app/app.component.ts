@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { Boutique } from './boutique';
 import { BoutiqueService } from './boutique.service';
 import { NgForm } from '@angular/forms';
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -14,6 +13,8 @@ export class AppComponent implements OnInit {
   title: String = "UEFullStackProjectApp"
 
   public boutiques: Boutique[] | undefined;
+  public updateBoutique : Boutique;
+  public deleteBoutique : Boutique;
 
   constructor(private boutiqueService: BoutiqueService) { }
 
@@ -35,16 +36,16 @@ export class AppComponent implements OnInit {
   }
 
   public onAddBoutique(addForm: NgForm): void {
-    console.log(addForm.value);
+    document.getElementById('add-shop-form').click();
     this.boutiqueService.addBoutique(addForm.value).subscribe(
-      {
-        next: (response: Boutique) => {
-          console.log(response);
-          this.getBoutiques();
-        },
-        error: (error: HttpErrorResponse) => {
-          alert(error.message);
-        }
+      (response: Boutique) => {
+        console.log(response);
+        this.getBoutiques();
+        addForm.reset();
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+        addForm.reset();
       }
     );
   }
